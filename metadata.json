@@ -1,0 +1,6 @@
+{
+  "name": "The Standard Model Explorer",
+  "description": "An interactive, visually stunning educational exploration of the Standard Model of Particle Physics with 3D models, hadron builder, Feynman diagram editor, and a cosmic ray hunt minigame.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
