@@ -16,6 +16,7 @@ import FeynmanBuilder from './components/FeynmanBuilder';
 import BSMExplorer from './components/BSMExplorer';
 import CloudChamberGame from './components/CloudChamberGame';
 import ParticleZoo from './components/ParticleZoo';
+import QuantumTunneling from './components/QuantumTunneling';
 
 // Icon imports
 import { Sparkles, Zap, Shield, Atom, Flame, Eye, RefreshCw, Target } from 'lucide-react';
@@ -25,7 +26,7 @@ export default function App() {
   const [isAntimatter, setIsAntimatter] = useState<boolean>(false);
   const [selectedParticle, setSelectedParticle] = useState<Particle>(PARTICLES[0]); // Default to Up Quark
   const [activeEpoch, setActiveEpoch] = useState<Epoch>(EPOCHS[5]); // Default to Present Era
-  const [currentTab, setCurrentTab] = useState<'hadron' | 'feynman' | 'bsm' | 'zoo'>('hadron');
+  const [currentTab, setCurrentTab] = useState<'hadron' | 'feynman' | 'bsm' | 'zoo' | 'tunneling'>('hadron');
   const [isDetectorOpen, setIsDetectorOpen] = useState<boolean>(false);
 
   // Synchronize selected particle if it gets locked out during epoch dragging
@@ -200,7 +201,7 @@ export default function App() {
             <button
               onClick={() => setCurrentTab('zoo')}
               id="lab-tab-zoo"
-              className={`flex-1 py-4 px-4 text-center font-bold text-xs uppercase tracking-wider cursor-pointer border-b-2 transition-all duration-300 ${
+              className={`flex-1 py-4 px-4 text-center font-bold text-xs uppercase tracking-wider cursor-pointer border-r border-white/10 border-b-2 transition-all duration-300 ${
                 currentTab === 'zoo'
                   ? isAntimatter
                     ? 'bg-pink-500/20 text-pink-400 border-b-pink-500'
@@ -210,6 +211,19 @@ export default function App() {
             >
               Lab 04: The Particle Zoo
             </button>
+            <button
+              onClick={() => setCurrentTab('tunneling')}
+              id="lab-tab-tunneling"
+              className={`flex-1 py-4 px-4 text-center font-bold text-xs uppercase tracking-wider cursor-pointer border-b-2 transition-all duration-300 ${
+                currentTab === 'tunneling'
+                  ? isAntimatter
+                    ? 'bg-pink-500/20 text-pink-400 border-b-pink-500'
+                    : 'bg-blue-500/20 text-blue-400 border-b-blue-500'
+                  : 'text-white/50 border-b-transparent hover:text-white hover:bg-white/5'
+              }`}
+            >
+              Lab 05: Quantum Tunneling
+            </button>
           </div>
 
           {/* Active Tab Workspace Container */}
@@ -218,6 +232,7 @@ export default function App() {
             {currentTab === 'feynman' && <FeynmanBuilder />}
             {currentTab === 'bsm' && <BSMExplorer />}
             {currentTab === 'zoo' && <ParticleZoo isAntimatter={isAntimatter} />}
+            {currentTab === 'tunneling' && <QuantumTunneling />}
           </div>
 
         </section>

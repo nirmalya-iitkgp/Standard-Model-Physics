@@ -40,6 +40,12 @@ Built with modern **React 19**, **Vite**, **Tailwind CSS v4**, and **Three.js** 
   - A comprehensive registry listing all known particles within and beyond the Standard Model, including hadrons (protons, neutrons, pions, kaons, J/Psi, Lambdas, Deltas, Omegas) and superpartners.
   - Rich interactive sorting (by mass or charge) and multi-tier filtering options (by particle type, charge, mass range, or text search).
   - Detailed diagnostic panel utilizing our WebGL 3D Inspector showing decay profiles, mass ranges, spins, electric charges, and force coupling parameters.
+  - **Higgs Field Vacuum Expectation Value (VEV) Mass Modulator**: A master slider letting you adjust the Higgs VEV from 0 to 500 GeV, recalculating and rendering all elementary particle masses in real-time. Displays dynamic universe state scenarios (e.g. massless electrons or collapsed stars) and simulates QCD binding masses to keep hadrons physically stable under zero-coupling scenarios.
+  - **Common Decay Paths Visualization**: A branching diagram tree mapping the decay modes of unstable particles, showing exact branching ratio percentages and final product symbols that conjugate dynamically when switching to the Antimatter universe.
+- **Lab 5: Quantum Tunneling Wavefunction Simulator**:
+  - A gorgeous, real-time, canvas-based quantum mechanics simulation displaying a probability wavepacket incident on a potential energy barrier.
+  - Adjust physical parameters (particle energy, particle mass, barrier height, and barrier width) and see transmission ($T$) and reflection ($R$) coefficients calculated and plotted in real-time.
+  - Includes a beautiful custom math display detailing the exact Schrödinger equation approximation used to solve the tunneling probability.
 
 ### 5. Gamification: "Cosmic Ray Hunter" Cloud Chamber
 - Click the floating **Detect!** HUD button to open a physical **Cloud Chamber** simulation.
