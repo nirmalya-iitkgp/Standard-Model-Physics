@@ -5,6 +5,19 @@
 
 export type ParticleType = 'quark' | 'lepton' | 'boson' | 'higgs';
 
+export interface DecayChannel {
+  branchingRatio: string;
+  products: string[];
+  mediator?: string;
+  description: string;
+}
+
+export interface SymmetryProperty {
+  name: string;
+  status: 'conserved' | 'broken' | 'approximate';
+  note: string;
+}
+
 export interface Particle {
   id: string;
   name: string;
@@ -20,6 +33,10 @@ export interface Particle {
   interactions: string[]; // e.g. ["Electromagnetic", "Weak", "Strong"]
   stableEpoch: number; // index of epoch where it becomes stable/exists
   glowColor: string; // Tailwind glow color class or hex
+  isStable?: boolean;
+  lifetime?: string;
+  decayChannels?: DecayChannel[];
+  symmetries?: SymmetryProperty[];
 }
 
 export interface Epoch {

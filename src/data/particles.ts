@@ -20,8 +20,15 @@ export const PARTICLES: Particle[] = [
     spin: '1/2',
     explanation: 'The lightest and most stable quark. Along with the down quark, it forms protons and neutrons which constitute the nuclei of standard matter.',
     interactions: ['Strong', 'Weak', 'Electromagnetic', 'Higgs'],
-    stableEpoch: 2, // Electroweak / Quark epoch
-    glowColor: '#a78bfa' // Neon Violet
+    stableEpoch: 2,
+    glowColor: '#a78bfa',
+    isStable: true,
+    lifetime: '> 10³⁴ yr (in proton)',
+    symmetries: [
+      { name: 'CPT Invariance', status: 'conserved', note: 'Exact symmetry of local QFT' },
+      { name: 'Color SU(3)', status: 'conserved', note: 'Confinement in color singlets' },
+      { name: 'Parity (P)', status: 'conserved', note: 'Conserved in strong/EM sectors' }
+    ]
   },
   {
     id: 'charm',
@@ -36,8 +43,18 @@ export const PARTICLES: Particle[] = [
     spin: '1/2',
     explanation: 'A heavy second-generation quark. It decays rapidly via the weak interaction and can only be produced in high-energy collisions.',
     interactions: ['Strong', 'Weak', 'Electromagnetic', 'Higgs'],
-    stableEpoch: 1, // Electroweak
-    glowColor: '#8b5cf6'
+    stableEpoch: 1,
+    glowColor: '#8b5cf6',
+    isStable: false,
+    lifetime: '1.0 × 10⁻¹² s',
+    decayChannels: [
+      { branchingRatio: '95%', products: ['s', 'W⁺'], mediator: 'Weak Charged', description: 'Cabibbo-favored decay into strange quark via V_cs coupling' },
+      { branchingRatio: '5%', products: ['d', 'W⁺'], mediator: 'Weak Charged', description: 'Cabibbo-suppressed transition to down quark via V_cd' }
+    ],
+    symmetries: [
+      { name: 'CPT Invariance', status: 'conserved', note: 'Exact symmetry' },
+      { name: 'Flavor Symmetry', status: 'broken', note: 'Broken by mass hierarchy' }
+    ]
   },
   {
     id: 'top',
@@ -52,8 +69,18 @@ export const PARTICLES: Particle[] = [
     spin: '1/2',
     explanation: 'The most massive of all observed elementary particles. Its mass is comparable to an entire atom of gold, decaying before it can form hadrons.',
     interactions: ['Strong', 'Weak', 'Electromagnetic', 'Higgs'],
-    stableEpoch: 1, // Electroweak
-    glowColor: '#7c3aed'
+    stableEpoch: 1,
+    glowColor: '#7c3aed',
+    isStable: false,
+    lifetime: '5.0 × 10⁻²⁵ s',
+    decayChannels: [
+      { branchingRatio: '99.8%', products: ['W⁺', 'b'], mediator: 'Weak Charged', description: 'Decays before hadronization almost exclusively into W boson and bottom quark' },
+      { branchingRatio: '0.2%', products: ['W⁺', 's'], mediator: 'Weak Charged', description: 'Rare CKM-suppressed transition into strange quark' }
+    ],
+    symmetries: [
+      { name: 'CPT Invariance', status: 'conserved', note: 'Conserved across all channels' },
+      { name: 'Hadronization', status: 'broken', note: 'Lifetime is shorter than QCD timescale' }
+    ]
   },
   {
     id: 'down',
@@ -68,8 +95,17 @@ export const PARTICLES: Particle[] = [
     spin: '1/2',
     explanation: 'The second-lightest quark. It forms protons (uud) and neutrons (udd) when bound to up quarks by gluons.',
     interactions: ['Strong', 'Weak', 'Electromagnetic', 'Higgs'],
-    stableEpoch: 2, // Electroweak / Quark
-    glowColor: '#c084fc'
+    stableEpoch: 2,
+    glowColor: '#c084fc',
+    isStable: true,
+    lifetime: 'Stable (bound)',
+    decayChannels: [
+      { branchingRatio: '100%', products: ['u', 'e⁻', 'ν̄_e'], mediator: 'Weak Beta Decay', description: 'In free neutrons, decays via beta emission into up quark, electron, and antineutrino' }
+    ],
+    symmetries: [
+      { name: 'CPT Invariance', status: 'conserved', note: 'Exact quantum symmetry' },
+      { name: 'Color SU(3)', status: 'conserved', note: 'Strict color neutrality in hadrons' }
+    ]
   },
   {
     id: 'strange',
@@ -85,7 +121,17 @@ export const PARTICLES: Particle[] = [
     explanation: 'A second-generation quark possessing a property called "strangeness". It has a remarkably long lifetime compared to other unstable particles.',
     interactions: ['Strong', 'Weak', 'Electromagnetic', 'Higgs'],
     stableEpoch: 2,
-    glowColor: '#a855f7'
+    glowColor: '#a855f7',
+    isStable: false,
+    lifetime: '1.2 × 10⁻⁸ s',
+    decayChannels: [
+      { branchingRatio: '64%', products: ['u', 'W⁻'], mediator: 'Weak Charged', description: 'Flavor-changing weak decay into up quark' },
+      { branchingRatio: '36%', products: ['u', 'e⁻', 'ν̄_e'], mediator: 'Weak Charged', description: 'Semileptonic beta decay transition' }
+    ],
+    symmetries: [
+      { name: 'CPT Invariance', status: 'conserved', note: 'Conserved' },
+      { name: 'Strangeness', status: 'broken', note: 'Conserved in strong, violated in weak decay' }
+    ]
   },
   {
     id: 'bottom',
@@ -101,7 +147,16 @@ export const PARTICLES: Particle[] = [
     explanation: 'A massive third-generation quark. It decays almost exclusively into a charm quark or an up quark via the weak nuclear force.',
     interactions: ['Strong', 'Weak', 'Electromagnetic', 'Higgs'],
     stableEpoch: 1,
-    glowColor: '#6d28d9'
+    glowColor: '#6d28d9',
+    isStable: false,
+    lifetime: '1.5 × 10⁻¹² s',
+    decayChannels: [
+      { branchingRatio: '98.5%', products: ['c', 'W⁻'], mediator: 'Weak Charged', description: 'Dominant decay into charm quark via V_cb CKM element' },
+      { branchingRatio: '1.5%', products: ['u', 'W⁻'], mediator: 'Weak Charged', description: 'Suppressed direct decay into up quark via V_ub' }
+    ],
+    symmetries: [
+      { name: 'CP Violation', status: 'broken', note: 'Direct CP violation observed in B meson systems' }
+    ]
   },
 
   // LEPTONS
@@ -118,8 +173,14 @@ export const PARTICLES: Particle[] = [
     spin: '1/2',
     explanation: 'The primary carrier of electricity and the foundation of chemical bonds. It orbits atomic nuclei to form neutral atoms.',
     interactions: ['Weak', 'Electromagnetic', 'Higgs'],
-    stableEpoch: 3, // Hadron/Lepton epoch
-    glowColor: '#22d3ee' // Electric Cyan
+    stableEpoch: 3,
+    glowColor: '#22d3ee',
+    isStable: true,
+    lifetime: '> 6.6 × 10²⁸ yr',
+    symmetries: [
+      { name: 'Electric Charge', status: 'conserved', note: 'Strictly conserved U(1)_EM gauge symmetry' },
+      { name: 'Lepton Number', status: 'conserved', note: 'Individual family number conserved in standard processes' }
+    ]
   },
   {
     id: 'muon',
@@ -135,7 +196,15 @@ export const PARTICLES: Particle[] = [
     explanation: 'A heavier cousin of the electron. Highly penetrating, muons can pass through hundreds of meters of solid rock before absorbing.',
     interactions: ['Weak', 'Electromagnetic', 'Higgs'],
     stableEpoch: 2,
-    glowColor: '#06b6d4'
+    glowColor: '#06b6d4',
+    isStable: false,
+    lifetime: '2.2 × 10⁻⁶ s',
+    decayChannels: [
+      { branchingRatio: '100%', products: ['e⁻', 'ν̄_e', 'ν_μ'], mediator: 'Weak Charged (W⁻)', description: 'Three-body leptonic decay into electron, electron antineutrino, and muon neutrino' }
+    ],
+    symmetries: [
+      { name: 'Lepton Flavor', status: 'conserved', note: 'Conserved at tree level in the Standard Model' }
+    ]
   },
   {
     id: 'tau',
@@ -151,7 +220,17 @@ export const PARTICLES: Particle[] = [
     explanation: 'The heaviest and most unstable lepton, about 3,500 times more massive than an electron. It is the only lepton that can decay into hadrons.',
     interactions: ['Weak', 'Electromagnetic', 'Higgs'],
     stableEpoch: 1,
-    glowColor: '#0891b2'
+    glowColor: '#0891b2',
+    isStable: false,
+    lifetime: '2.9 × 10⁻¹³ s',
+    decayChannels: [
+      { branchingRatio: '64.8%', products: ['hadrons', 'ν_τ'], mediator: 'Weak Force', description: 'Hadronic decays producing pions or kaons plus a tau neutrino' },
+      { branchingRatio: '17.8%', products: ['μ⁻', 'ν̄_μ', 'ν_τ'], mediator: 'Weak Force', description: 'Leptonic decay to muon and two neutrinos' },
+      { branchingRatio: '17.4%', products: ['e⁻', 'ν̄_e', 'ν_τ'], mediator: 'Weak Force', description: 'Leptonic decay to electron and two neutrinos' }
+    ],
+    symmetries: [
+      { name: 'Lepton Universality', status: 'conserved', note: 'Couples with identical electroweak strength as e and μ' }
+    ]
   },
   {
     id: 'ele_neutrino',
@@ -167,7 +246,12 @@ export const PARTICLES: Particle[] = [
     explanation: 'An extremely light, neutral lepton that barely interacts with matter, able to fly through light-years of lead unimpeded.',
     interactions: ['Weak', 'Gravity'],
     stableEpoch: 3,
-    glowColor: '#67e8f9'
+    glowColor: '#67e8f9',
+    isStable: true,
+    lifetime: 'Stable (Flavor Oscillating)',
+    symmetries: [
+      { name: 'Parity (P)', status: 'broken', note: 'Neutrinos are strictly left-handed in the Standard Model' }
+    ]
   },
   {
     id: 'mu_neutrino',
@@ -183,7 +267,12 @@ export const PARTICLES: Particle[] = [
     explanation: 'A second-generation neutrino produced in muon decays. Neutrinos constantly fluctuate (oscillate) between their three generation types.',
     interactions: ['Weak', 'Gravity'],
     stableEpoch: 2,
-    glowColor: '#22d3ee'
+    glowColor: '#22d3ee',
+    isStable: true,
+    lifetime: 'Stable (Flavor Oscillating)',
+    symmetries: [
+      { name: 'Flavor Symmetry', status: 'broken', note: 'Broken via PMNS neutrino oscillation matrix' }
+    ]
   },
   {
     id: 'tau_neutrino',
@@ -199,7 +288,12 @@ export const PARTICLES: Particle[] = [
     explanation: 'The heaviest and most elusive of the standard model neutrinos, finally directly detected in 2000 at Fermilab.',
     interactions: ['Weak', 'Gravity'],
     stableEpoch: 1,
-    glowColor: '#0e7490'
+    glowColor: '#0e7490',
+    isStable: true,
+    lifetime: 'Stable (Flavor Oscillating)',
+    symmetries: [
+      { name: 'Flavor Symmetry', status: 'broken', note: 'Oscillates between mass eigenstates' }
+    ]
   },
 
   // GAUGE BOSONS
@@ -216,7 +310,12 @@ export const PARTICLES: Particle[] = [
     explanation: 'The gauge boson responsible for the strong force, binding quarks into protons and neutrons. Gluons carry "color charge" and interact with themselves.',
     interactions: ['Strong'],
     stableEpoch: 2,
-    glowColor: '#fdba74' // Blazing Orange light
+    glowColor: '#fdba74',
+    isStable: true,
+    lifetime: 'Confined in hadrons',
+    symmetries: [
+      { name: 'Color SU(3)', status: 'conserved', note: 'Non-Abelian gauge symmetry governing gluon self-interaction' }
+    ]
   },
   {
     id: 'photon',
@@ -231,7 +330,12 @@ export const PARTICLES: Particle[] = [
     explanation: 'The quantum of light and the mediator of electromagnetism. Photons have zero rest mass and travel at the absolute speed limit of the universe.',
     interactions: ['Electromagnetic'],
     stableEpoch: 3,
-    glowColor: '#f97316' // Blazing Orange
+    glowColor: '#f97316',
+    isStable: true,
+    lifetime: 'Infinite (Ground State)',
+    symmetries: [
+      { name: 'U(1)_EM Gauge', status: 'conserved', note: 'Exact unbroken gauge symmetry after electroweak breaking' }
+    ]
   },
   {
     id: 'z_boson',
@@ -246,7 +350,17 @@ export const PARTICLES: Particle[] = [
     explanation: 'A massive, electrically neutral weak boson. It mediates neutral current weak interactions, enabling momentum transfer without charge swap.',
     interactions: ['Weak'],
     stableEpoch: 1,
-    glowColor: '#ea580c'
+    glowColor: '#ea580c',
+    isStable: false,
+    lifetime: '2.6 × 10⁻²⁵ s',
+    decayChannels: [
+      { branchingRatio: '69.9%', products: ['q', 'q̄'], mediator: 'Neutral Current', description: 'Hadronic decay into quark-antiquark pairs' },
+      { branchingRatio: '20.0%', products: ['ν', 'ν̄'], mediator: 'Neutral Current', description: 'Invisible decay into neutrino-antineutrino pairs' },
+      { branchingRatio: '10.1%', products: ['ℓ⁺', 'ℓ⁻'], mediator: 'Neutral Current', description: 'Leptonic decay into charged lepton pairs' }
+    ],
+    symmetries: [
+      { name: 'Electroweak SU(2)xU(1)', status: 'broken', note: 'Mass acquired via spontaneous symmetry breaking (Higgs VEV)' }
+    ]
   },
   {
     id: 'w_plus_boson',
@@ -261,7 +375,16 @@ export const PARTICLES: Particle[] = [
     explanation: 'The positively charged weak force carrier. It changes the flavor of quarks (e.g. down to up quark in beta minus decay).',
     interactions: ['Weak', 'Electromagnetic'],
     stableEpoch: 1,
-    glowColor: '#c2410c'
+    glowColor: '#c2410c',
+    isStable: false,
+    lifetime: '3.2 × 10⁻²⁵ s',
+    decayChannels: [
+      { branchingRatio: '67.4%', products: ['q', 'q̄\''], mediator: 'Charged Current', description: 'Decay into quark-antiquark pairs (e.g., ud̄, cs̄)' },
+      { branchingRatio: '32.6%', products: ['ℓ⁺', 'ν_ℓ'], mediator: 'Charged Current', description: 'Leptonic decay into positively charged lepton and neutrino' }
+    ],
+    symmetries: [
+      { name: 'Parity (P)', status: 'broken', note: 'Couples strictly to left-handed chiral fermions (V-A structure)' }
+    ]
   },
   {
     id: 'w_minus_boson',
@@ -276,7 +399,16 @@ export const PARTICLES: Particle[] = [
     explanation: 'The negatively charged weak force carrier. It acts as the antiparticle to the W+ Boson, and plays a key role in radioactive beta decay.',
     interactions: ['Weak', 'Electromagnetic'],
     stableEpoch: 1,
-    glowColor: '#9a3412'
+    glowColor: '#9a3412',
+    isStable: false,
+    lifetime: '3.2 × 10⁻²⁵ s',
+    decayChannels: [
+      { branchingRatio: '67.4%', products: ['q̄', 'q\''], mediator: 'Charged Current', description: 'Decay into antiquark-quark pairs' },
+      { branchingRatio: '32.6%', products: ['ℓ⁻', 'ν̄_ℓ'], mediator: 'Charged Current', description: 'Leptonic decay into negatively charged lepton and antineutrino' }
+    ],
+    symmetries: [
+      { name: 'Parity (P)', status: 'broken', note: 'Maximally violates parity; couples only to left-handed matter' }
+    ]
   },
 
   // HIGGS BOSON
@@ -292,8 +424,22 @@ export const PARTICLES: Particle[] = [
     spin: '0',
     explanation: 'The excitation of the Higgs field, which permeates all of space. Particles moving through this field experience a drag that manifests as inertial rest mass.',
     interactions: ['Higgs', 'Weak'],
-    stableEpoch: 1, // Becomes active when Electroweak Symmetry breaks
-    glowColor: '#facc15' // Golden Cosmic Glow
+    stableEpoch: 1,
+    glowColor: '#facc15',
+    isStable: false,
+    lifetime: '1.6 × 10⁻²² s',
+    decayChannels: [
+      { branchingRatio: '58.2%', products: ['b', 'b̄'], mediator: 'Yukawa Coupling', description: 'Dominant decay into bottom-antibottom quark pair' },
+      { branchingRatio: '21.5%', products: ['W⁺', 'W⁻'], mediator: 'Gauge Coupling', description: 'Decay into W boson pair (one virtual)' },
+      { branchingRatio: '8.2%', products: ['g', 'g'], mediator: 'Top Quark Loop', description: 'Decay into gluon pair via heavy top quark triangle loop' },
+      { branchingRatio: '6.3%', products: ['τ⁺', 'τ⁻'], mediator: 'Yukawa Coupling', description: 'Decay into tau lepton pair' },
+      { branchingRatio: '2.6%', products: ['Z⁰', 'Z⁰'], mediator: 'Gauge Coupling', description: 'Golden discovery channel into four charged leptons via ZZ*' },
+      { branchingRatio: '0.2%', products: ['γ', 'γ'], mediator: 'Loop Coupling', description: 'Rare di-photon signature that enabled the 2012 CERN discovery' }
+    ],
+    symmetries: [
+      { name: 'Electroweak Symmetry', status: 'broken', note: 'Non-zero vacuum expectation value (v = 246 GeV) gives mass' },
+      { name: 'Spin-0 Scalar', status: 'conserved', note: 'Only fundamental scalar particle known in nature' }
+    ]
   }
 ];
 

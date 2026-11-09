@@ -122,6 +122,26 @@ function runTestSuite() {
     const T_high = Math.exp(-2 * k_L_high * width);
     assert(T_high > T, 'Quantum Tunneling: Higher particle kinetic energy yields higher transmission probability');
 
+    // Test 10: Decay Channels & Branching Ratios Validation
+    const topQuark = PARTICLES.find(p => p.id === 'top');
+    assert(!!topQuark && !topQuark.isStable && topQuark.decayChannels?.[0]?.products.includes('W⁺'), 'Top Quark decays via W+ and bottom quark');
+
+    const muon = PARTICLES.find(p => p.id === 'muon');
+    assert(!!muon && !muon.isStable && muon.decayChannels?.[0]?.branchingRatio === '100%', 'Muon decays 100% via weak leptonic channel');
+
+    const higgs = PARTICLES.find(p => p.id === 'higgs');
+    assert(!!higgs && !higgs.isStable && (higgs.decayChannels?.length || 0) >= 4, 'Higgs Boson possesses rich multi-channel decay spectrum (bb, WW, ZZ, etc.)');
+
+    // Test 11: Fundamental Particle Stability
+    const electron = PARTICLES.find(p => p.id === 'electron');
+    const photon = PARTICLES.find(p => p.id === 'photon');
+    assert(!!electron && electron.isStable === true, 'Electron is classified as stable ground state');
+    assert(!!photon && photon.isStable === true, 'Photon is classified as stable ground state');
+
+    // Test 12: Symmetry metadata validation
+    assert(!!electron && !!electron.symmetries && electron.symmetries.length > 0, 'Electron includes quantum symmetry invariants');
+    assert(!!higgs && higgs.symmetries?.some(s => s.status === 'broken'), 'Higgs reflects broken electroweak symmetry');
+
     // Print summary
     console.log(`\n📊 TEST SUMMARY: ${passedTests} passed, ${failedTests} failed.`);
     if (failedTests > 0) {
